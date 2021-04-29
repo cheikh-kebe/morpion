@@ -46,41 +46,42 @@ class Game
 
   def switch_players
     if @current_player == @player_1
-       @current_player = @player_2
-    else
       @current_player = @player_2
+    else
+      @current_player = @player_1
     end
   end
 
-  def turn 
+  def turn
+    # On boucle tant qu'il n'y a pas de victoire
     loop do
-      system 'clear'
-      puts "=============".red
-      puts "Voici l'état du jeu:" # Affiche le plateau vierge:
+    	system "clear"
+    	puts "============="
+
+    	puts "Voici l'état du jeu:".yellow
+    	# Affiche le plateau :
       @board.board_display
-      puts "=============".red
-      
+
       puts ""
-      puts "C'est au tour de #{@current_player.name} qui joue les #{@current_player.symbol}".yellow
-      puts "Choisis ta case Narvaloooo"
+      puts "C'est le tour de #{@current_player.name} avec les #{@current_player.symbol}"
+      puts "Choisis une case"
       print ">"
 
-    # On appelle la méthode play_turn de la classe Board sur le joueur en cours (current). 
-    #Elle demande au joueur quelle case il joue, puis affiche son symbole dans la case
+      # On appelle la méthode play de la classe board sur le joueur en cours (current). Elle demande au joueur quelle case il joue, puis affiche son symbole dans la case
       @board.play_turn(@current_player.symbol)
 
-    # On arrête la boucle en cas de victoire
+      # On arrête la boucle en cas de victoire d'un joueur
       if @board.victory? == true
-        system "clear"
-        puts "=============".red
-        puts "Voici l'état du jeu:"
+      	system "clear"
+		   	puts "============="
+		  	puts "Voici l'état du jeu:"
         @board.board_display
         puts ""
-        puts "#{@current_player.name} est le Mopionator !!!".yellow.upcase
+        puts "#{@current_player.name} a gagné la partie!!!".upcase.yellow
         puts
         break
       end
+      switch_players
     end
-    switch_players
-  end
+  end 
 end
