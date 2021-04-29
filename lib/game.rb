@@ -18,19 +18,19 @@ class Game
     # sleep 1
     puts "Joueur 1, ton symbole sera X, Entres ton GamerTag: ".yellow
     print ">"
-    name_1 = gets.chomp
+    name_1 = gets.chomp.red
     puts " Bien le bonjour #{name_1}".upcase.underline.red
     # crée le joueur 1
-    @player_1 = Player.new(name_1, "X")
+    @player_1 = Player.new(name_1, "X".red)
     puts""
     sleep 1
     puts "Joueur 2, ton symbole sera o , Entres ton Gamertag: ".yellow
     sleep 1
     print ">"
-    name_2 = gets.chomp
+    name_2 = gets.chomp.green
     puts " Bien le bonjour #{name_2}".upcase.underline.red
     # crée le joueur 2
-    @player_2 = Player.new(name_2, "O")
+    @player_2 = Player.new(name_2, "O".green)
     @current_player = @player_1
     sleep 1 
     puts""
@@ -63,7 +63,7 @@ class Game
       @board.board_display
 
       puts ""
-      puts "C'est le tour de #{@current_player.name} avec les #{@current_player.symbol}"
+      puts "C'est le tour de #{@current_player.name} avec les #{@current_player.symbol}".yellow
       puts "Choisis une case"
       print ">"
 
@@ -74,10 +74,10 @@ class Game
       if @board.victory? == true
       	system "clear"
 		   	puts "============="
-		  	puts "Voici l'état du jeu:"
+		  	puts "Voici l'état du jeu:".yellow
         @board.board_display
         puts ""
-        puts "#{@current_player.name} a gagné la partie!!!".upcase.yellow
+        puts "#{@current_player.name} a gagné la partie!!! BRAVISSIMO".upcase.yellow
         puts
         break
       end
